@@ -1,0 +1,25 @@
+{
+  "name": "usernameverifier",
+  "version": "1.0.0",
+  "description": "A nodejs/expressapp for checking availiability of a given username",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thelaughinglama/UsernameVerifier.git"
+  },
+  "author": "Prashant Joshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thelaughinglama/UsernameVerifier/issues"
+  },
+  "homepage": "https://github.com/thelaughinglama/UsernameVerifier#readme"
+}
