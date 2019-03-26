@@ -1,10 +1,22 @@
 //supported sites: GITHUB HACKERRANK CODEFORCE HACKEREARTH TOPCODER
-const title = "risinggeek"
+const title = "prashant1h76"
 const express=require('express');
 const exphbs=require('express-handlebars')
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 const app=express()
+
+app.get('/',(req,res)=>{
+res.render('main')
+});
+
+
+
+
+
+
+
+//user verifier script
 const optionsHACKER = {
     uri: `https://hackerrank.com/${title}`,
     transform: function (body) {
@@ -114,6 +126,32 @@ rp(optionsFORCE)
         console.log('not taken topcoder');}
             });
 
+
+            const optionsCHEF = {
+                uri: `https://www.codechef.com/users/${title}`,
+                transform: function (body) {
+                    return cheerio.load(body);
+                },
+                headers: {
+                    // "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                    // "Accept-Encoding": "gzip, deflate, br",
+                    // "accept-language": "en-US,en;q=0.9,ko;q=0.8",
+                    // "cache-control": "no-cache",
+                    // "pragma": "no-cache",
+                    
+                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+                  }
+            };
+            
+            rp(optionsCHEF)
+                .then(($) => {
+             console.log('user found codechef')
+                })
+                .catch((err) => {
+                console.log(err);
+            
+            
+                });
         const port=5000
 
             app.listen(port, () =>{
