@@ -1,87 +1,64 @@
-const title = "Prashantqqwe"
+//GITHUB HACKERRANK CODEFORCE HACKEREARTH TOPCODER
+const title = "risinggeek"
+const express=require('express');
+const exphbs=require('express-handlebars')
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const options1 = {
-    uri: `https://hackerrank.com/` + title,
+const app=express()
+const optionsHACKER = {
+    uri: `https://hackerrank.com/${title}`,
     transform: function (body) {
         return cheerio.load(body);
     }
 };
 
-rp(options1)
+rp(optionsHACKER)
     .then(($) => {
         var x = $('.profile-heading').text()
         if (!x) {
-            console.log("okkkk")
+            console.log("nottaken hackerrank")
         }
-        
-        console.log('hackerrank:'+$('.profile-heading').text());
+        else{console.log('taken hackerrank')}
+       
     })
     .catch((err) => {
-        console.log('err');
+        console.log('nottaken hackerrank');
 
 
     });
 
 
-const options2 = {
-    uri: `https://www.github.com/` + title,
+const optionsGIT = {
+    uri: `https://www.github.com/${title}`,
     transform: function (body) {
         return cheerio.load(body);
     }
 };
 
-rp(options2)
+rp(optionsGIT)
     .then(($) => {
-        var y = $('.p-nickname').text()
-
-        console.log('github:'+$('.p-nickname').text());
+       console.log('taken github')
     })
     .catch((err) => {
-        console.log('err');
+        console.log('not taken github');
 
 
   });
 
 
-  const options5 = {
-    uri: `https://instagram.com`,
-    headers: {
-        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4'
-      }, 
-    transform: function (body) {
-      return cheerio.load(body);
-    }
-  };
-
-  rp(options5)
-    .then(($) => {var y=$('.v11jx').text()
-    if(!y){
-        console.log('ok');
-    }
-      console.log($('body').text());
-    })
-    .catch((err) => {
-   console.log(err);
-if(err){
-    console.log('error');
-}
-
-    });
-
-
+  
 // app.listen(2300,console.log("ddd"))}
-const optionsa = {
-    uri: `https://www.codeforces.com/profile/tourist`,
+const optionsFORCE = {
+    uri: `https://www.codeforces.com/profile/${title}`,
     transform: function (body) {
         return cheerio.load(body);
     }
 };
 
-rp(optionsa)
+rp(optionsFORCE)
     .then(($) => {
    if($('.userbox').html()==null){
-       console.log('user not found')
+       console.log('user not found codeforces')
    }
         else{
         console.log("codeforce ok");}
@@ -94,46 +71,65 @@ rp(optionsa)
     });
 
 
-    const optionsb = {
-        uri: `https://www.hackerearth.com/@`+title,
+    const optionsEARTH = {
+        uri: `https://www.hackerearth.com/@${title}`,
         transform: function (body) {
             return cheerio.load(body);
         }
     };
     
-    rp(optionsb)
+    rp(optionsEARTH)
         .then(($) => {
-      if($('title').text()==`  ${title} (${title})'s Developer Profile | HackerEarth  `){//Prashant (Prashant)'s Developer Profile | HackerEarth
+    //   if($('title').text()==`  ${title} (${title})'s Developer Profile | HackerEarth  `)
+      //Prashant (Prashant)'s Developer Profile | HackerEarth
             
-          console.log('not taken');
-      }
-      else{ 
-          console.log(';(')
-      }
-            //console.log('codeforce:'+$('.userbox').html());}
+          console.log('taken hackerearth');
+      
+    //   else{ 
+    //       console.log(';(')
+      
         })
         .catch((err) => {
            if(err){
-               console.log('error');
+               console.log('nottaken hackerearth');
            }
     
         });
-        const options1 = {
-            uri: `https://topcoder.com/members/`+title,
+        const optionsTOPCODER= {
+            uri: `https://topcoder.com/members/${title}`,
             transform: function (body) {
                 return cheerio.load(body);
             }
         };
         
-        rp(options1)
+        rp(optionsTOPCODER)
             .then(($) => {
                 
-                console.log('s'+$('head').children('title').text());
+                console.log('taken topcoder');
             })
             .catch((err) => {
             
         
         if(err){
-        console.log('okk');}
+        console.log('not taken topcoder');}
             });
-        
+
+        const port=5000
+
+            app.listen(port, () =>{
+                console.log(`Server started on port ${port}`);
+              });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
