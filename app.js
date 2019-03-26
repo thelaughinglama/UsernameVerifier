@@ -1,4 +1,4 @@
-//GITHUB HACKERRANK CODEFORCE HACKEREARTH TOPCODER
+//supported sites: GITHUB HACKERRANK CODEFORCE HACKEREARTH TOPCODER
 const title = "risinggeek"
 const express=require('express');
 const exphbs=require('express-handlebars')
