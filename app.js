@@ -15,6 +15,8 @@ app.engine('handlebars',exphbs({
 
     defaultLayout:'main'
 }))
+//static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine','handlebars');
 
@@ -190,9 +192,9 @@ hackerrank=0;
                 
    
 }
-const port=5300;
+const port=process.env.port||5000;
 app.listen(port,()=>{
-    console.log(`started server on port 5300 `)
+    console.log(`started server on port 5000 `)
 })
 
 // const optionsHACKER = {  

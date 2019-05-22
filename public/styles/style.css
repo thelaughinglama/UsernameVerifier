@@ -28,7 +28,7 @@ body,html{margin: 0;
     overflow: hidden;
     /* background: linear-gradient(to right, rgb(28, 146, 210), rgb(242, 252, 254)); */
 }
-.main-text{
+.main-text1{
     color: cornflowerblue;
     font-family: 'Iceland', cursive;
     padding-bottom: 10px;
@@ -49,7 +49,4 @@ body,html{margin: 0;
      -webkit-filter: brightness(100%);
      filter:brightness(100%);
  }
- .logo{
-     color: aqua;
-     font-size: 100px;
- }
+ 
