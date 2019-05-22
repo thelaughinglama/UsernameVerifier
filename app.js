@@ -31,7 +31,7 @@ else{title=req.query.username;
 
     }
 )
-  }, 6000);
+  }, 8000);
   
 }
 });
