@@ -22,7 +22,7 @@ app.set('view engine','handlebars');
 
 
 app.get('/',async function(req,res){
-if(req.query.username==null){
+if(req.query.username==null||req.query.username==""){
 res.render('index')}
 else{title=req.query.username;
   await script(title)
