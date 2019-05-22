@@ -90,10 +90,10 @@ const optionsGIT = {
         var x = $('.profile-heading').text()
         if (!x) {
             console.log("nottaken hackerrank")
-            hackerrank=0;
+            hackerrank="✓";
         }  
         else{console.log('taken hackerrank')
-        hackerrank=1;}
+        hackerrank="✗";}
        
     }) 
     .catch((err) => {
@@ -104,23 +104,23 @@ hackerrank=0;
         rp(optionsGIT)
             .then(($) => {
                console.log('taken github')
-               github=1;
+               github="✗";
             })
             .catch((err) => {
                 console.log('not taken git hub');
         
-        github=0;
+        github="✓";
           })
         ).then(
             rp(optionsFORCE)
                 .then(($) => {
                if($('.userbox').html()==null){
                    console.log('user not found codeforces')
-                   codeforce=0;
+                   codeforce="✓";
                }
                     else{
                     console.log("username taken codeforce");
-                codeforce=1}
+                codeforce="✗"}
 
                     // console.log('codeforce:'+$('.userbox').html());}
                 })
@@ -137,7 +137,7 @@ hackerrank=0;
                       //Prashant (Prashant)'s Developer Profile | HackerEarth
                             
                           console.log('taken hackerearth');
-                          hackerearth=1;
+                          hackerearth="✗";
                       
                     //   else{ 
                     //       console.log(';(')
@@ -146,7 +146,7 @@ hackerrank=0;
                         .catch((err) => {
                            if(err){
                                console.log('nottaken hackerearth');
-                               hackerearth=0;
+                               hackerearth="✓";
                            }
                     
                         })
@@ -155,23 +155,23 @@ hackerrank=0;
                             .then(($) => {
                                 
                                 console.log('taken topcoder');
-                                topcoder=1;
+                                topcoder="✗";
                             })
                             .catch((err) => {  
                             
                         
                         if(err){
                         console.log('not taken topcoder');
-                    topcoder=0;}
+                    topcoder="✓";}
                             })).then( rp(optionsCHEF)
                             .then(($) => {
                          console.log('user found codechef')
-                         codechef=1
+                         codechef="✗"
                             })
                             .catch((err) => {
                             console.log("username avail codechef");
                         
-                        codechef=0
+                        codechef="✓"
                             }))
                 
 

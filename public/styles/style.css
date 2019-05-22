@@ -49,3 +49,7 @@ body,html{margin: 0;
      -webkit-filter: brightness(100%);
      filter:brightness(100%);
  }
+ .logo{
+     color: aqua;
+     font-size: 100px;
+ }
