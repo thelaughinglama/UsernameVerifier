@@ -192,6 +192,9 @@ hackerrank=0;
                 
    
 }
+app.get('/about',(req,res)=>{
+    res.render('about')
+})
 const port=process.env.port||5000;
 app.listen(port,()=>{
     console.log(`started server on port 5000 `)
