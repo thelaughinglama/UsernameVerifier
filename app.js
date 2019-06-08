@@ -1,4 +1,4 @@
-//supported sites: GITHUB HACKERRANK HACKEREARTH TOPCODER CODECHEF
+//supported sites: GITHUB HACKERRANK CODEFORCE HACKEREARTH TOPCODER CODECHEF
 // const title = "prashant"
 
 const express=require('express');
@@ -26,9 +26,13 @@ if(req.query.username==null||req.query.username==""){
 res.render('index')}
 else{title=req.query.username;
   await script(title)
+  setTimeout(() => {
+    res.render('result' ,{hackerrank:hackerrank,hackerearth:hackerearth,codechef:codechef,github:github,codeforce:codeforce,topcoder:topcoder
 
-res.render('result' ,{hackerrank:hackerrank,hackerearth:hackerearth,codechef:codechef,github:github,topcoder:topcoder
-});
+    }
+)
+  }, 8000);
+  
 }
 });
 async function script(title){
@@ -63,12 +67,12 @@ const optionsEARTH = {
     }
 };
 
-// const optionsFORCE = {
-//     uri: `https://www.codeforces.com/profile/${title}`,
-//     transform: function (body) {
-//         return cheerio.load(body); 
-//     }
-// };
+const optionsFORCE = {
+    uri: `https://www.codeforces.com/profile/${title}`,
+    transform: function (body) {
+        return cheerio.load(body); 
+    }
+};
 const optionsTOPCODER= {
     uri: `https://topcoder.com/members/${title}`,
     transform: function (body) {
@@ -82,19 +86,8 @@ const optionsGIT = {
         return cheerio.load(body);
     }
 };
-let resultHRANK=await optionsHACKER;
-let resultGIT=await optionsGIT;
-let resultTOPCODER=await optionsTOPCODER;
-let resultEARTH=await optionsEARTH;
-let resultCHEF=await optionsCHEF;
 
-
-
-
-
-
-
- await rp(resultHRANK)
+  rp(optionsHACKER)
     .then(($) => {
         var x = $('.profile-heading').text()
         if (!x) {
@@ -107,10 +100,10 @@ let resultCHEF=await optionsCHEF;
     }) 
     .catch((err) => {
         console.log('nottaken hackerrank');
-
+hackerrank=0;
 
     }).then(
-        rp(resultGIT)
+        rp(optionsGIT)
             .then(($) => {
                console.log('taken github')
                github="✗";
@@ -121,9 +114,26 @@ let resultCHEF=await optionsCHEF;
         github="✓";
           })
         ).then(
+            rp(optionsFORCE)
+                .then(($) => {
+               if($('.userbox').html()==null){
+                   console.log('user not found codeforces')
+                   codeforce="✓";
+               }
+                    else{
+                    console.log("username taken codeforce");
+                codeforce="✗"}
+
+                    // console.log('codeforce:'+$('.userbox').html());}
+                })
+                .catch((err) => {
+                console.log('error');
+            
+            
+                })).then(
 
 
-                    rp(resultEARTH)
+                    rp(optionsEARTH)
                         .then(($) => {
                     //   if($('title').text()==`  ${title} (${title})'s Developer Profile | HackerEarth  `)
                       //Prashant (Prashant)'s Developer Profile | HackerEarth
@@ -143,7 +153,7 @@ let resultCHEF=await optionsCHEF;
                     
                         })
                       ).then(
-                        rp(resultTOPCODER)
+                        rp(optionsTOPCODER)
                             .then(($) => {
                                 
                                 console.log('taken topcoder');
@@ -155,7 +165,8 @@ let resultCHEF=await optionsCHEF;
                         if(err){
                         console.log('not taken topcoder');
                     topcoder="✓";}
-                            })).then( rp(resultCHEF).then(($) => {
+                            })).then( rp(optionsCHEF)
+                            .then(($) => {
                          console.log('user found codechef')
                          codechef="✗"
                             })
@@ -163,8 +174,8 @@ let resultCHEF=await optionsCHEF;
                             console.log("username avail codechef");
                         
                         codechef="✓"
-                            })
-                        )
+                            }))
+                
 
 
 
