@@ -67,11 +67,12 @@ const optionsEARTH = {
     }
 };
 
-const optionsFORCE = {
+const optionsFORCE = {rejectUnauthorized:false,
     uri: `https://www.codeforces.com/profile/${title}`,
     transform: function (body) {
         return cheerio.load(body); 
     }
+    
 };
 const optionsTOPCODER= {
     uri: `https://topcoder.com/members/${title}`,
@@ -127,7 +128,7 @@ hackerrank=0;
                     // console.log('codeforce:'+$('.userbox').html());}
                 })
                 .catch((err) => {
-                console.log('error');
+                console.log(err);
             
             
                 })).then(
