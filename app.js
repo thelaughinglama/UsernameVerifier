@@ -26,12 +26,16 @@ if(req.query.username==null||req.query.username==""){
 res.render('index')}
 else{title=req.query.username;
   await script(title)
-  setTimeout(() => {
-    res.render('result' ,{hackerrank:hackerrank,hackerearth:hackerearth,codechef:codechef,github:github,codeforce:codeforce,topcoder:topcoder
+//   setTimeout(() => {
+//     res.render('result' ,{hackerrank:hackerrank,hackerearth:hackerearth,codechef:codechef,github:github,codeforce:codeforce,topcoder:topcoder
 
-    }
-)
-  }, 8000);
+//     }
+// )
+//   }, 8000);
+res.render('result' ,{hackerrank:hackerrank,hackerearth:hackerearth,codechef:codechef,github:github,codeforce:codeforce,topcoder:topcoder
+
+         }
+    )
   
 }
 });
@@ -83,12 +87,20 @@ const optionsTOPCODER= {
 
 const optionsGIT = {
     uri: `https://www.github.com/${title}`,
-    transform: function (body) {
-        return cheerio.load(body);
+    transform:async  function ( body) {
+        let bodyload= await cheerio.load(body);
+        return bodyload;
     }
 };
+let resultHRANK=await optionsHACKER;
+let resultGIT=await optionsGIT;
+let resultTOPCODER=await optionsTOPCODER;
+let resultEARTH=await optionsEARTH;
+let resultCHEF=await optionsCHEF;
+let resultFORCE=await optionsFORCE;
 
-  rp(optionsHACKER)
+
+  rp(resultHRANK)
     .then(($) => {
         var x = $('.profile-heading').text()
         if (!x) {
@@ -104,7 +116,7 @@ const optionsGIT = {
 hackerrank=0;
 
     }).then(
-        rp(optionsGIT)
+        rp(resultGIT)
             .then(($) => {
                console.log('taken github')
                github="✗";
@@ -115,7 +127,7 @@ hackerrank=0;
         github="✓";
           })
         ).then(
-            rp(optionsFORCE)
+            rp(resultFORCE)
                 .then(($) => {
                if($('.userbox').html()==null){
                    console.log('user not found codeforces')
@@ -134,7 +146,7 @@ hackerrank=0;
                 })).then(
 
 
-                    rp(optionsEARTH)
+                    rp(resultEARTH)
                         .then(($) => {
                     //   if($('title').text()==`  ${title} (${title})'s Developer Profile | HackerEarth  `)
                       //Prashant (Prashant)'s Developer Profile | HackerEarth
@@ -154,7 +166,7 @@ hackerrank=0;
                     
                         })
                       ).then(
-                        rp(optionsTOPCODER)
+                        rp(resultTOPCODER)
                             .then(($) => {
                                 
                                 console.log('taken topcoder');
@@ -166,7 +178,7 @@ hackerrank=0;
                         if(err){
                         console.log('not taken topcoder');
                     topcoder="✓";}
-                            })).then( rp(optionsCHEF)
+                            })).then( rp(resultCHEF)
                             .then(($) => {
                          console.log('user found codechef')
                          codechef="✗"
@@ -186,10 +198,9 @@ hackerrank=0;
 
 
 
-      //   return  await hackerrank;
+      let xd=await hackerrank;
        
-           
-
+    console.log(xd);
                 
    
 }
