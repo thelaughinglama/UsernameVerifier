@@ -4,9 +4,9 @@
   "description": "A nodejs/expressapp for checking availiability of a given username",
   "main": "app.js",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "express-handlebars": "^3.0.2",
     "materialize-css": "^1.0.0",
     "request": "^2.88.0",
